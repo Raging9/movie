@@ -6,6 +6,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 //配置要扫描mapper的包
-@MapperScan("com.gouyan.**.mapper")
+@MapperScan("com.douchai.**.mapper")
 public class ApplicationConfiguration {
 }

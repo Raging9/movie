@@ -3,7 +3,6 @@ package com.douchai.web.controller.system;
 import com.douchai.web.controller.BaseController;
 import com.douchai.common.response.ResponseResult;
 import com.douchai.system.domin.SysActor;
-import com.douchai.system.domin.SysMovie;
 import com.douchai.system.service.impl.SysActorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
