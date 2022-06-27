@@ -8,10 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @author lxd
- * @create 2020-11-19 21:12
- */
+
 @Service
 public class SysHallCategoryServiceImpl implements SysHallCategoryService {
 

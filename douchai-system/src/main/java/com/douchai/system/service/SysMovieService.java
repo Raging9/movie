@@ -5,10 +5,7 @@ import com.douchai.system.domin.vo.SysMovieVo;
 
 import java.util.List;
 
-/**
- * @Author: 华雨欣
- * @Create: 2020-11-22 15:56
- */
+
 public interface SysMovieService {
 
     List<SysMovie> findAll(SysMovieVo sysMovieVo);

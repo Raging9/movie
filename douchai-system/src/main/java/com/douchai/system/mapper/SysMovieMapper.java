@@ -6,10 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-/**
- * @Author: 华雨欣
- * @Create: 2020-11-22 10:00
- */
+
 @Mapper
 public interface SysMovieMapper {
 

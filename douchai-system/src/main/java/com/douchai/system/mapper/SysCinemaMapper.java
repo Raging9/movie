@@ -6,10 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-/**
- * @author lxd
- * @create 2020-11-25 22:23
- */
+
 @Mapper
 public interface SysCinemaMapper {
 

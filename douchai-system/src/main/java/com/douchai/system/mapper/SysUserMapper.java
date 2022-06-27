@@ -7,10 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-/**
- * @author lxd
- * @create 2020-11-22 21:48
- */
+
 @Mapper
 public interface SysUserMapper {
     List<SysUser> findAll(SysUser sysUser);

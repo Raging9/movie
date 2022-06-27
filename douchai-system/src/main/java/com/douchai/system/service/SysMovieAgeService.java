@@ -4,10 +4,7 @@ import com.douchai.system.domin.SysMovieAge;
 
 import java.util.List;
 
-/**
- * @Author: 华雨欣
- * @Create: 2020-11-14 22:57
- */
+
 public interface SysMovieAgeService {
 
     List<SysMovieAge> findAll();

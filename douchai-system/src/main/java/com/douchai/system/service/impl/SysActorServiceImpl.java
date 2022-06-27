@@ -8,10 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @author lxd
- * @create 2020-11-23 15:36
- */
+
 
 @Service
 public class SysActorServiceImpl implements SysActorService {

@@ -8,10 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @Author: 华雨欣
- * @Create: 2020-11-19 22:53
- */
+
 @Service
 public class SysActorRoleServiceImpl implements SysActorRoleService {
 

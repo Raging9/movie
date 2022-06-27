@@ -8,10 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @Author: 华雨欣
- * @Create: 2020-11-20 10:45
- */
+
 @Service
 public class SysMovieRuntimeServiceImpl implements SysMovieRuntimeService {
 

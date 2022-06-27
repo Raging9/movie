@@ -5,10 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-/**
- * @Author: 华雨欣
- * @Create: 2020-11-20 11:21
- */
+
 @Mapper
 public interface SysMovieRuntimeMapper {
 

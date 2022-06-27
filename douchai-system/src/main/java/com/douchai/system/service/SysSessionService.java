@@ -5,10 +5,7 @@ import com.douchai.system.domin.vo.SysSessionVo;
 
 import java.util.List;
 
-/**
- * @Author: 华雨欣
- * @Create: 2020-11-24 23:23
- */
+
 public interface SysSessionService {
 
     List<SysSession> findByVo(SysSessionVo sysSessionVo);

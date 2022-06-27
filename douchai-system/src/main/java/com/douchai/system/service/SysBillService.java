@@ -4,10 +4,7 @@ import com.douchai.system.domin.SysBill;
 
 import java.util.List;
 
-/**
- * @Author: 华雨欣
- * @Create: 2020-11-30 14:24
- */
+
 public interface SysBillService {
 
     List<SysBill> findAll(SysBill sysBill);

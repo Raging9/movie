@@ -5,10 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-/**
- * @author lxd
- * @create 2020-11-23 15:34
- */
+
 @Mapper
 public interface SysActorMapper {
     List<SysActor> findAll(SysActor sysActor);

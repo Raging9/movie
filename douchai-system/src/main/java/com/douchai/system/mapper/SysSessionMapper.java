@@ -8,10 +8,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-/**
- * @Author: 华雨欣
- * @Create: 2020-11-23 22:29
- */
+
 @Mapper
 public interface SysSessionMapper {
 

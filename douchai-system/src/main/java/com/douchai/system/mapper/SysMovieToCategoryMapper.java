@@ -5,10 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-/**
- * @Author: 华雨欣
- * @Create: 2020-11-30 22:13
- */
+
 @Mapper
 public interface SysMovieToCategoryMapper {
 

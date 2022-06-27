@@ -4,10 +4,7 @@ import com.douchai.system.domin.SysMovieComment;
 
 import java.util.List;
 
-/**
- * @Author: 华雨欣
- * @Create: 2020-11-22 21:48
- */
+
 public interface SysMovieCommentService {
 
     List<SysMovieComment> findAll();

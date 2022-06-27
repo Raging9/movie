@@ -8,10 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @Author: 华雨欣
- * @Create: 2020-11-30 14:25
- */
 @Service
 public class SysBillServiceImpl implements SysBillService {
 

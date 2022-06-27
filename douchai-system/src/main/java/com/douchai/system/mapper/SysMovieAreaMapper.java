@@ -5,10 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-/**
- * @author lxd
- * @create 2020-11-18 22:07
- */
+
 @Mapper
 public interface SysMovieAreaMapper {
     /**
