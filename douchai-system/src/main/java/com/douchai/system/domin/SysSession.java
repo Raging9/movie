@@ -14,8 +14,6 @@ import java.time.LocalDate;
 
 /**
  * 场次实体类
- * @Author: 华雨欣
- * @Create: 2020-11-23 21:59
  */
 @Data
 @AllArgsConstructor

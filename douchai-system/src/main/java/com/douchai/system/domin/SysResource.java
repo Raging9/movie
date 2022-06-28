@@ -9,10 +9,7 @@ import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * @Author: 华雨欣
- * @Create: 2020-12-10 15:11
- */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

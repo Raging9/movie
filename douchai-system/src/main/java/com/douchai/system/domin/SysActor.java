@@ -10,10 +10,7 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * @author lxd
- * @create 2020-11-23 14:54
- */
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

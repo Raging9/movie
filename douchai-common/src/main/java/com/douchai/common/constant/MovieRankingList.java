@@ -1,9 +1,5 @@
 package com.douchai.common.constant;
 
-/**
- * @Author: 华雨欣
- * @Create: 2020-12-03 12:00
- */
 public class MovieRankingList {
 
     public static final String[] listNames = new String[4];

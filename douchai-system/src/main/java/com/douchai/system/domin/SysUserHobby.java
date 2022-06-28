@@ -10,8 +10,6 @@ import java.io.Serializable;
 
 /**
  * 个人爱好
- * @Author: 华雨欣
- * @Create: 2020-11-20 10:32
  */
 @Data
 @AllArgsConstructor

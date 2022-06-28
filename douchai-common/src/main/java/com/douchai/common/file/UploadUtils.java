@@ -18,7 +18,7 @@ public class UploadUtils {
 
     private static final String AK = "K5FmoaDc6fvJwV_YcIsda4Ukp2TZa058U11bJGRI";
     private static final String SK = "4m0w3loDrD8kxF2ESZ4ocFIxd0ahsOmzYURZi8Ki";
-    private static final String BUCKET = "movie-service";
+    private static final String BUCKET = "movie-server";
 
     /**
      * 上传图片到七牛云

@@ -9,8 +9,6 @@ import java.io.Serializable;
 
 /**
  * 封装用户登录输入的信息
- * @Author: 华雨欣
- * @Create: 2020-12-07 22:58
  */
 @Data
 @AllArgsConstructor

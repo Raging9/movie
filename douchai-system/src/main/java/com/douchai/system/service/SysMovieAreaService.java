@@ -4,7 +4,7 @@ import com.douchai.system.domin.SysMovieArea;
 
 import java.util.List;
 
-/
+
 public interface SysMovieAreaService {
     List<SysMovieArea> findAll();
 

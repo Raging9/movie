@@ -8,10 +8,7 @@ import lombok.ToString;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
-/**
- * @Author: 华雨欣
- * @Create: 2020-11-20 09:05
- */
+
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
