@@ -42,10 +42,11 @@
     </update>
 
     <update id="update" parameterType="SysBill">
-        update sys_bill set
+        update sys_bill
+            <set>
         <if test="billState != null">bill_state = #{billState}, </if>
         <if test="seats != null and seats != ''">seats = #{seats}, </if>
-        bill_date = sysdate()
+            </set>
         where bill_id = #{billId}
     </update>
     

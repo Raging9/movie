@@ -1,5 +1,8 @@
 package com.douchai.web.controller.system;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONPObject;
 import com.douchai.web.controller.BaseController;
 import com.douchai.common.exception.DataNotFoundException;
 import com.douchai.common.response.ResponseResult;
@@ -43,7 +46,6 @@ public class SysBillController extends BaseController {
 
     @PostMapping("/sysBill")
     public ResponseResult add(@Validated @RequestBody SysBill sysBill){
-        System.out.println(sysBill);
         Object obj = sysBillService.add(sysBill);
         if(obj instanceof Integer){
             return getResult((Integer) obj);
@@ -60,7 +62,26 @@ public class SysBillController extends BaseController {
             if(curSession == null){
                 throw new DataNotFoundException("添加订单的场次没找到");
             }
-            curSession.setSessionSeats(sysBillVo.getSessionSeats());
+            //当前场次座位json信息
+            String sessionSeats = curSession.getSessionSeats();
+            //订单的座位字符串
+            String seats = sysBillVo.getSysBill().getSeats();
+            //订单的座位数
+            int seatNum = seats.split(",").length;
+            //订单座位json数组
+            JSONArray seatsArr = JSONArray.parseArray(seats);
+            //场次的座位json对象
+            JSONObject jsonObject = JSONObject.parseObject(sessionSeats);
+            for(int i = 0;i<seatsArr.size();i++){
+                String oneSeat = seatsArr.getString(i);
+                String row = oneSeat.substring(0,oneSeat.indexOf("排"));
+                String column = oneSeat.substring(oneSeat.indexOf("排")+1,oneSeat.indexOf("座"));
+                JSONArray arr = jsonObject.getJSONArray(row);
+                //已售出
+                arr.set(Integer.parseInt(column),3);
+                jsonObject.put(row,arr);
+            }
+            curSession.setSessionSeats(jsonObject.toJSONString());
             sysSessionService.update(curSession);
 
             //更新电影票房
@@ -68,7 +89,6 @@ public class SysBillController extends BaseController {
             if(curMovie == null){
                 throw new DataNotFoundException("添加订单的电影没找到");
             }
-            int seatNum = sysBillVo.getSysBill().getSeats().split(",").length;//订单的座位数
             double price = curSession.getSessionPrice();
             curMovie.setMovieBoxOffice(curMovie.getMovieBoxOffice() + seatNum * price);
             sysMovieService.update(curMovie);

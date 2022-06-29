@@ -6,6 +6,7 @@ import com.douchai.system.service.SysBillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -26,6 +27,7 @@ public class SysBillServiceImpl implements SysBillService {
 
     @Override
     public Object add(SysBill sysBill) {
+        sysBill.setBillDate(new Date());
         int rows = sysBillMapper.add(sysBill);
         return rows > 0 ? sysBill : rows;
     }
