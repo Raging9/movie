@@ -25,7 +25,7 @@
 3. 进入`src->components`目录，找到`global_variable.vue`文件，其中有两个属性，`base`属性表示访问后端图片的路径，`baseUrl`表示通过`axios`访问后端接口的默认路径
 4. 运行前端vue项目，进入`film-ui`文件夹，执行`npm run serve`命令即可运行
 
-### 狗眼前台在线选座售票系统前端
+### 豆柴前台在线选座售票系统前端
 
 整体步骤与上述一致，只需要进入`film-user`目录即可
 
