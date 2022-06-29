@@ -39,7 +39,7 @@ mybatis:
 # logging 日志配置
 logging:
   level:
-    com.douchai: trace
+    com.douchai.web: debug
     org.springframework: warn
 
 # pagehelper 分页插件配置

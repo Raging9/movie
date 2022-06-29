@@ -1,5 +1,7 @@
 package com.douchai.system.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.douchai.system.domin.LoginUser;
 import com.douchai.system.domin.SysUser;
 import com.douchai.system.domin.vo.SysUserVo;
@@ -52,6 +54,22 @@ public class SysUserServiceImpl implements SysUserService {
 
         sysUser.setPassword(md5Hash.toHex());
         sysUser.setSalt(salt);
+        JSONObject information = new JSONObject();
+        information.put("birthday","2022-06-14T16:00:00.000Z");
+        information.put("condition","1");
+        JSONArray jobArr = new JSONArray();
+        jobArr.add(1);
+        jobArr.add(11);
+        information.put("job",jobArr);
+        JSONArray hobbiesArr = new JSONArray();
+        hobbiesArr.add(11);
+        information.put("hobbies",hobbiesArr);
+        information.put("autograph","没什么说明");
+        String jsonString = information.toJSONString();
+        sysUser.setInformation(jsonString);
+        JSONArray picArr = new JSONArray();
+        picArr.add("2022/06/28/normal.png");
+        sysUser.setUserPicture(picArr.toJSONString());
         return sysUserMapper.add(sysUser);
     }
 
