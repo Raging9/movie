@@ -78,7 +78,7 @@ public class SysBillController extends BaseController {
                 String column = oneSeat.substring(oneSeat.indexOf("排")+1,oneSeat.indexOf("座"));
                 JSONArray arr = jsonObject.getJSONArray(row);
                 //已售出
-                arr.set(Integer.parseInt(column),3);
+                arr.set(Integer.parseInt(column)-1,3);
                 jsonObject.put(row,arr);
             }
             curSession.setSessionSeats(jsonObject.toJSONString());
