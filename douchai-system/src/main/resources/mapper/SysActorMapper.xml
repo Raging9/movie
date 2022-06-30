@@ -46,8 +46,11 @@
 <!--        </collection>-->
     </resultMap>
 
-    <select id="findAll" parameterType="SysActor" resultType="SysActor">
-        select * from sys_actor
+    <select id="findAll" parameterType="SysActor" resultMap="ActorMap">
+        select a.*, m.*, ar.* from sys_actor a
+        join sys_actor_movie am on a.actor_id = am.actor_id
+        join sys_movie m on m.movie_id = am.movie_id
+        join sys_actor_role ar on ar.actor_role_id = am.actor_role_id
         <where>
             <if test="actorName != null and actorName != ''">
                 and actor_name like concat('%', #{actorName}, '%')
@@ -59,6 +62,7 @@
                 and actor_school like concat('%', #{actorSchool}, '%')
             </if>
         </where>
+        order by release_date desc
     </select>
 
     <select id="findById" parameterType="long" resultType="SysActor">
