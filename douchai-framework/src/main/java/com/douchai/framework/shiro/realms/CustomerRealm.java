@@ -44,20 +44,19 @@ public class CustomerRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         String token = (String) authenticationToken.getCredentials();
         // 解密获得username，用于和数据库进行对比
-        String username = null;
+        String username;
         try {
-            //这里工具类没有处理空指针等异常这里处理一下(这里处理科学一些)
             username = JwtUtil.getUsername(token);
         } catch (Exception e) {
             throw new AuthenticationException("token拼写错误或者值为空");
         }
         if (username == null) {
-            log.error("token无效(空''或者null都不行!)");
+            log.error("token无效");
             throw new AuthenticationException("token无效");
         }
         SysUser user = sysUserService.findByName(username);
         if (user == null) {
-            log.error("用户不存在)");
+            log.error("用户不存在");
             throw new AuthenticationException("用户不存在");
         }
         if (!JwtUtil.verify(token, username, user.getPassword())) {
