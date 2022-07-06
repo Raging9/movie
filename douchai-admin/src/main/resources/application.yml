@@ -3,6 +3,15 @@ spring:
   # 数据源配置文件
   profiles:
     active: druid
+  redis:
+    host: 39.106.57.248
+    password: 123qwe
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: 100
 
   # 开发工具，配置热部署
   devtools:

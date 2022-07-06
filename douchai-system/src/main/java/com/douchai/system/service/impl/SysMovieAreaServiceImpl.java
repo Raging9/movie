@@ -1,9 +1,15 @@
 package com.douchai.system.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.douchai.common.utils.RedisKeyUtil;
+import com.douchai.system.domin.SysMovieAge;
 import com.douchai.system.domin.SysMovieArea;
 import com.douchai.system.mapper.SysMovieAreaMapper;
 import com.douchai.system.service.SysMovieAreaService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,9 +20,21 @@ public class SysMovieAreaServiceImpl implements SysMovieAreaService {
     @Autowired
     SysMovieAreaMapper sysMovieAreaMapper;
 
+    @Autowired
+    private StringRedisTemplate redisTemplate;
+
     @Override
     public List<SysMovieArea> findAll() {
-        return sysMovieAreaMapper.findAll();
+        String movieArea = redisTemplate.opsForValue().get(RedisKeyUtil.getMovieAreaKey());
+        if(!StringUtils.isBlank(movieArea)){
+            //缓存存在，直接返回
+            JSONArray list = JSONArray.parseArray(movieArea);
+            return list.toJavaList(SysMovieArea.class);
+        }
+        List<SysMovieArea> movieAreaList = sysMovieAreaMapper.findAll();
+        String jsonString = JSONObject.toJSONString(movieAreaList);
+        redisTemplate.opsForValue().set(RedisKeyUtil.getMovieAreaKey(),jsonString);
+        return movieAreaList;
     }
 
     @Override
@@ -31,7 +49,9 @@ public class SysMovieAreaServiceImpl implements SysMovieAreaService {
 
     @Override
     public int update(SysMovieArea sysMovieArea) {
-        return sysMovieAreaMapper.update(sysMovieArea);
+        int update = sysMovieAreaMapper.update(sysMovieArea);
+        redisTemplate.delete(RedisKeyUtil.getMovieAreaKey());
+        return update;
     }
 
     @Override

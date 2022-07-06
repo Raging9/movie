@@ -1,9 +1,15 @@
 package com.douchai.system.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.douchai.common.utils.RedisKeyUtil;
 import com.douchai.system.domin.SysCinemaArea;
+import com.douchai.system.domin.SysCinemaBrand;
 import com.douchai.system.mapper.SysCinemaAreaMapper;
 import com.douchai.system.service.SysCinemaAreaService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,9 +21,21 @@ public class SysCinemaAreaServiceImpl implements SysCinemaAreaService {
     @Autowired
     private SysCinemaAreaMapper sysCinemaAreaMapper;
 
+    @Autowired
+    private StringRedisTemplate redisTemplate;
+
     @Override
     public List<SysCinemaArea> findAll() {
-        return sysCinemaAreaMapper.findAll();
+        String data = redisTemplate.opsForValue().get(RedisKeyUtil.getCinemaAreaKey());
+        if(!StringUtils.isBlank(data)){
+            //缓存存在，直接返回
+            JSONArray list = JSONArray.parseArray(data);
+            return list.toJavaList(SysCinemaArea.class);
+        }
+        List<SysCinemaArea> list = sysCinemaAreaMapper.findAll();
+        String jsonString = JSONObject.toJSONString(list);
+        redisTemplate.opsForValue().set(RedisKeyUtil.getCinemaAreaKey(),jsonString);
+        return list;
     }
 
     @Override
@@ -32,7 +50,9 @@ public class SysCinemaAreaServiceImpl implements SysCinemaAreaService {
 
     @Override
     public int update(SysCinemaArea sysCinemaArea) {
-        return sysCinemaAreaMapper.update(sysCinemaArea);
+        int update = sysCinemaAreaMapper.update(sysCinemaArea);
+        redisTemplate.delete(RedisKeyUtil.getCinemaAreaKey());
+        return update;
     }
 
     @Override

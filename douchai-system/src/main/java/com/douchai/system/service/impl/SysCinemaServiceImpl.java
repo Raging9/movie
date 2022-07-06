@@ -5,6 +5,7 @@ import com.douchai.system.domin.vo.SysCinemaVo;
 import com.douchai.system.mapper.SysCinemaMapper;
 import com.douchai.system.service.SysCinemaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,9 @@ public class SysCinemaServiceImpl implements SysCinemaService {
 
     @Autowired
     private SysCinemaMapper sysCinemaMapper;
+
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
 
     @Override
