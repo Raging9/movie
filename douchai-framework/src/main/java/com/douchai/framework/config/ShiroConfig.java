@@ -29,16 +29,16 @@ public class ShiroConfig {
         //给shiroFilter设置安全管理器
         shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
 
+        // 添加自己的过滤器并且取名为jwt
+        Map<String, Filter> filterMap = new HashMap<String, Filter>(1);
+        filterMap.put("jwt", new JwtFilter());
+        shiroFilterFactoryBean.setFilters(filterMap);
+
         //配置受限资源
         Map<String, String> map = new LinkedHashMap<>();
         map.put("/sysUser/**", "anon");//放行
         map.put("/captcha/**", "anon");//放行验证码请求
         map.put("/**", "jwt");//请求这个资源需要认证与授权
-
-        // 添加自己的过滤器并且取名为jwt
-        Map<String, Filter> filterMap = new HashMap<String, Filter>(1);
-        filterMap.put("jwt", new JwtFilter());
-        shiroFilterFactoryBean.setFilters(filterMap);
 
         //设置认证规则
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);

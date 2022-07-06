@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class JwtFilter extends BasicHttpAuthenticationFilter implements Filter {
 
+
     @Override
     protected boolean executeLogin(ServletRequest request, ServletResponse response) throws Exception {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;

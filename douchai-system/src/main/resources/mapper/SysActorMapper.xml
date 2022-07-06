@@ -53,7 +53,7 @@
         join sys_actor_role ar on ar.actor_role_id = am.actor_role_id
         <where>
             <if test="actorName != null and actorName != ''">
-                and actor_name like concat('%', #{actorName}, '%')
+                match(actor_name) against (#{actorName})
             </if>
             <if test="actorGender != null">
                 and actor_gender = #{actorGender}

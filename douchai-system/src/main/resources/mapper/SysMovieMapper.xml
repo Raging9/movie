@@ -80,10 +80,10 @@
         </if>
         <where>
             <if test="movieNameCn != null and movieNameCn != ''">
-                and sm.movie_name_cn like concat('%', #{movieNameCn}, '%')
+                match(sm.movie_name_cn) against (#{movieNameCn})
             </if>
             <if test="movieNameEn != null and movieNameEn != ''">
-                and sm.movie_name_en like concat('%', #{movieNameEn}, '%')
+                match(sm.movie_name_en) against #{movieNameEn}
             </if>
             <if test="movieAreaId != null and movieAreaId > 0">
                 and sm.movie_area_id = #{movieAreaId}

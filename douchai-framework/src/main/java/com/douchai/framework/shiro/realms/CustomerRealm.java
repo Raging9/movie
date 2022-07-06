@@ -3,6 +3,7 @@ package com.douchai.framework.shiro.realms;
 import com.douchai.common.utils.JwtUtil;
 import com.douchai.framework.shiro.JwtToken;
 import com.douchai.system.domin.SysUser;
+import com.douchai.system.service.SysUserService;
 import com.douchai.system.service.impl.SysUserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;

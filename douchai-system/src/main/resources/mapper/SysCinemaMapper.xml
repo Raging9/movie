@@ -48,7 +48,7 @@
             join sys_hall_category shc on shc.hall_category_id = sh.hall_category_id
         </if>
         <where>
-            <if test="cinemaName != null and cinemaName != ''"> and sc.cinema_name like concat('%', #{cinemaName}, '%') </if>
+            <if test="cinemaName != null and cinemaName != ''"> match(sc.cinema_name) against (#{cinemaName}) </if>
             <if test="cinemaBrandId != null and cinemaBrandId > 0"> and sc.cinema_brand_id = #{cinemaBrandId} </if>
             <if test="cinemaAddress != null and cinemaAddress != ''"> and sc.cinema_address like concat ('%', #{cinemaAddress}, '%') </if>
             <if test="cinemaAreaId != null and cinemaAreaId != ''"> and sc.cinema_area_id = #{cinemaAreaId} </if>

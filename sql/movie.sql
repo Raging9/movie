@@ -162,6 +162,7 @@ INSERT INTO `sys_actor_movie` VALUES (57, 87, 2);
 
 -- ----------------------------
 -- Table structure for sys_actor_role
+
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_actor_role`;
 CREATE TABLE `sys_actor_role`  (
@@ -172,6 +173,7 @@ CREATE TABLE `sys_actor_role`  (
 
 -- ----------------------------
 -- Records of sys_actor_role
+
 -- ----------------------------
 INSERT INTO `sys_actor_role` VALUES (1, '导演');
 INSERT INTO `sys_actor_role` VALUES (2, '演员');
