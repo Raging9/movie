@@ -26,6 +26,7 @@ public class SysCinemaController extends BaseController {
 
     @GetMapping("/sysCinema")
     public ResponseResult findAll(SysCinemaVo sysCinemaVo){
+
         startPage();
         return getResult(sysCinemaService.findAll(sysCinemaVo));
     }

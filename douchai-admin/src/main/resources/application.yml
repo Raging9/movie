@@ -4,7 +4,7 @@ spring:
   profiles:
     active: druid
   redis:
-    host: 39.106.57.248
+    host: 175.24.203.115
     password: 123qwe
     lettuce:
       pool:
