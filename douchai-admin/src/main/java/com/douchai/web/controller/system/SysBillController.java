@@ -92,7 +92,6 @@ public class SysBillController extends BaseController {
             double price = curSession.getSessionPrice();
             curMovie.setMovieBoxOffice(curMovie.getMovieBoxOffice() + seatNum * price);
             sysMovieService.update(curMovie);
-
         }
         return getResult(rows);
     }
