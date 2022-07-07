@@ -28,12 +28,10 @@ public class SysMovieRuntime implements Serializable {
 
     //时段开始时间
     @NotBlank(message = "时段开始时间不能为空")
-    @Pattern(regexp = "^(20|21|22|23|[0-1]\\d):[0-5]\\d$", message = "时间输入格式不匹配，请按照：hh:mm 输入")
     private String beginTime;
 
     //时段结束时间
     @NotBlank(message = "时段结束时间不能为空")
-    @Pattern(regexp = "^(20|21|22|23|[0-1]\\d):[0-5]\\d$", message = "时间输入格式不匹配，请按照：hh:mm 输入")
     private String endTime;
 
 }
