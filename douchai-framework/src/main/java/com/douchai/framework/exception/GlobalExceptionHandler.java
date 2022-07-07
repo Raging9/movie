@@ -46,6 +46,12 @@ public class GlobalExceptionHandler {
         return ResponseResult.error("插入或修改操作不合法");
     }
 
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseResult runtimeExceptionHandler(RuntimeException e){
+        log.error(e.getMessage(), e);
+        return ResponseResult.error(e.getMessage());
+    }
+
     @ExceptionHandler(DataNotFoundException.class)
     public ResponseResult dataNotFoundExceptionHandler(DataNotFoundException e){
         log.warn(e.getMessage());

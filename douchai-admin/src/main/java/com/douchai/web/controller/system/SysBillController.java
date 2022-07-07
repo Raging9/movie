@@ -3,6 +3,7 @@ package com.douchai.web.controller.system;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONPObject;
+import com.douchai.system.service.SysBillService;
 import com.douchai.web.controller.BaseController;
 import com.douchai.common.exception.DataNotFoundException;
 import com.douchai.common.response.ResponseResult;
@@ -24,7 +25,7 @@ import java.util.List;
 public class SysBillController extends BaseController {
     
     @Autowired
-    private SysBillServiceImpl sysBillService;
+    private SysBillService sysBillService;
 
     @Autowired
     private SysSessionServiceImpl sysSessionService;
