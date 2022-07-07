@@ -3,6 +3,15 @@ spring:
   # 数据源配置文件
   profiles:
     active: druid
+  kafka:
+    bootstrap-servers: 39.106.57.248:9092
+    consumer:
+      group-id: movie-group
+      enable-auto-commit: true
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    listener:
+      missing-topics-fatal: false
   redis:
     host: 175.24.203.115
     password: 123qwe

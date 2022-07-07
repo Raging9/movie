@@ -1,5 +1,8 @@
 package com.douchai.web.controller.system;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONPObject;
+import com.douchai.common.utils.KafkaTopics;
 import com.douchai.web.controller.BaseController;
 import com.douchai.common.constant.HttpStatus;
 import com.douchai.common.exception.DataNotFoundException;
@@ -9,6 +12,7 @@ import com.douchai.system.domin.SysMovieComment;
 import com.douchai.system.service.impl.SysMovieCommentServiceImpl;
 import com.douchai.system.service.impl.SysMovieServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +28,9 @@ public class SysMovieCommentController extends BaseController {
 
     @Autowired
     private SysMovieServiceImpl sysMovieService;
+
+    @Autowired
+    private KafkaTemplate kafkaTemplate;
 
     @GetMapping("/sysMovieComment")
     public ResponseResult findAll(){
@@ -47,14 +54,7 @@ public class SysMovieCommentController extends BaseController {
         int rows = sysMovieCommentService.add(sysMovieComment);
         if(rows > 0){
             //添加成功 修改电影评分和评论人数
-            SysMovie movie = sysMovieService.findById(sysMovieComment.getMovieId());
-            Integer movieRateNum = movie.getMovieRateNum();
-            Double movieScore = movie.getMovieScore();
-            movieScore = (movieScore * movieRateNum + sysMovieComment.getScore()) / (++movieRateNum);
-
-            movie.setMovieScore(movieScore);
-            movie.setMovieRateNum(movieRateNum);
-            sysMovieService.update(movie);
+            kafkaTemplate.send(KafkaTopics.TOPIC_ADD_COMMENT, JSONObject.toJSONString(sysMovieComment));
         }
         return getResult(rows);
     }
@@ -66,17 +66,12 @@ public class SysMovieCommentController extends BaseController {
         if(originalComment == null){
             throw new DataNotFoundException("原始数据查询失败，请确保输入有效");
         }
-
         int rows = sysMovieCommentService.update(sysMovieComment);
         if(rows > 0){
-            //修改成功，修改电影评分
-            SysMovie movie = sysMovieService.findById(sysMovieComment.getMovieId());
-            Integer movieRateNum = movie.getMovieRateNum();
-            Double movieScore = movie.getMovieScore();
-            movieScore = (movieScore * movieRateNum + sysMovieComment.getScore() - originalComment.getScore()) / movieRateNum;
-            //更新评分
-            movie.setMovieScore(movieScore);
-            sysMovieService.update(movie);
+            JSONObject msg = new JSONObject();
+            msg.put("sysMovieComment",sysMovieComment);
+            msg.put("originalComment",originalComment);
+            kafkaTemplate.send(KafkaTopics.TOPIC_UPDATE_COMMENT,msg.toJSONString());
         }
         return getResult(rows);
     }
