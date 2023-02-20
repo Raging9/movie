@@ -4,7 +4,7 @@ spring:
   profiles:
     active: druid
   kafka:
-    bootstrap-servers: 39.106.57.248:9092
+    bootstrap-servers: 121.40.246.57:9092
     consumer:
       group-id: movie-group
       enable-auto-commit: true
@@ -13,7 +13,7 @@ spring:
     listener:
       missing-topics-fatal: false
   redis:
-    host: 175.24.203.115
+    host: 121.40.246.57
     password: 123qwe
     lettuce:
       pool:
